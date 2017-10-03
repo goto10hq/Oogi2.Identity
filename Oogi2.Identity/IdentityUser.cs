@@ -9,12 +9,7 @@ namespace Oogi2.Identity
         /// <summary>
         /// Id.
         /// </summary>
-        public string Id { get; set; }
-
-        /// <summary>
-        /// Entity identification.
-        /// </summary>
-        public string Entity { get; set; } 
+        public string Id { get; set; } 
 
         /// <summary>
         /// User name.

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.Azure.Documents.Client;
 using Oogi2.Queries;
+using Sushi2;
 
 namespace Oogi2.Identity
 {
@@ -133,10 +134,9 @@ namespace Oogi2.Identity
             
             var q = new DynamicQuery<T>
                 (
-                "select top 1 * from c where c.entity = @entity and c.userName = @userName",
+                $"select top 1 * from c where c.userName = @userName {EntityTypeConstraint}",
                 new
-                {
-                    entity = Entity,
+                {                    
                     userName
                 }
                 );
@@ -308,10 +308,9 @@ namespace Oogi2.Identity
 
             var q = new DynamicQuery<T>
                 (
-                "select top 1 * from c where c.entity = @entity and c.email = @email",
+                $"select top 1 * from c where c.email = @email {EntityTypeConstraint}",
                 new
-                {
-                    entity = Entity,
+                {                    
                     email
                 }
                 );
@@ -532,7 +531,24 @@ namespace Oogi2.Identity
             await _repo.ReplaceAsync(user);
         }
 
-        string Entity { get; } = new T().Entity;
+        string EntityTypeConstraint
+        {
+            get
+            {
+                var atr = typeof(T).GetAttribute<Attributes.EntityType>();
+
+                if (atr != null)
+                {
+                    var q = new DynamicQuery($" and c[\"{atr.Name}\"] = @val ", new { val = atr.Value });
+
+                    var sql = q.ToSqlQuery();
+
+                    return sql;
+                }
+
+                return null;
+            }
+        }
 
         Uri DocumentCollectionUri => UriFactory.CreateDocumentCollectionUri(_connection.DatabaseId, _connection.CollectionId);
        

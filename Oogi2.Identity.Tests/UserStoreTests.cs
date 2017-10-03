@@ -10,9 +10,9 @@ namespace Oogi2.Identity.Tests
     [TestClass]
     public class UserStoreTests
     {        
+        [Attributes.EntityType("entity", "oogi2.identity")]
         public class SuperIdentityUser : IdentityUser
-        {
-            public new string Entity { get; set; } = "oogi2.identity";
+        {            
         }
 
         Connection _con;
@@ -31,6 +31,12 @@ namespace Oogi2.Identity.Tests
             _con = new Connection(appSettings["endpoint"], appSettings["authorizationKey"], appSettings["database"], appSettings["collection"]);
             _con.CreateCollection();
             _userStore = new UserStore<SuperIdentityUser>(_con);
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            _con.DeleteCollection();
         }
 
         [TestMethod]
@@ -132,19 +138,6 @@ namespace Oogi2.Identity.Tests
             var userByLoginInfo = await _userStore.FindAsync(loginInfo);
 
             Assert.IsNotNull(userByLoginInfo);
-        }
-
-        [TestCleanup]
-        public async Task DeleteUsersAsync()
-        {
-            var repo = new Repository<SuperIdentityUser>(_con);
-
-            var users = repo.GetAll();
-
-            foreach (var user in users)
-            {
-                await repo.DeleteAsync(user);
-            }
-        }
+        }        
     }
 }
