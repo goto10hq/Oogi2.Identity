@@ -3,3 +3,5 @@
 ################################################################################
 
 /.vs/Oogi2.Identity/v15
+/Oogi2.Identity/bin/Debug/netstandard2.0
+/Oogi2.Identity/obj
