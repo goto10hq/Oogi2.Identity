@@ -15,7 +15,7 @@
     <Copyright>Copyright (c) 2017 Goto10 s.r.o.</Copyright>
     <Company>Goto10</Company>
     <RepositoryUrl>https://github.com/goto10hq/Oogi2.Identity</RepositoryUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/goto10hq/Oogi2.Identity/master/oogi2-identity-icon.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/goto10hq/Oogi2.Identity/master/Oogi2.Identity/oogi2-identity-icon.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
