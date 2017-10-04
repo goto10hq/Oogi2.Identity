@@ -8,3 +8,8 @@
 /Oogi2.Identity.Tests/bin/Debug/netcoreapp2.0
 /Oogi2.Identity.Tests/obj
 /.vs/config
+/Oogi2.Identity.Web/bin
+/Oogi2.Identity.Web/obj/Debug
+/Oogi2.Identity.Web/.oogi2.xml
+/packages
+/Oogi2.Identity.Web/Oogi2.Identity.Web.csproj.user
