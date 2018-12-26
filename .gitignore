@@ -13,3 +13,6 @@
 /Oogi2.Identity.Web/.oogi2.xml
 /packages
 /Oogi2.Identity.Web/Oogi2.Identity.Web.csproj.user
+/Oogi2.Identity.CoreWeb/bin/Debug/netcoreapp2.0
+/Oogi2.Identity.CoreWeb/obj/Debug/netcoreapp2.0
+/Oogi2.Identity.CoreWeb/obj
